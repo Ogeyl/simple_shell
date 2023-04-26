@@ -24,40 +24,42 @@ void sigintHandler(__attribute__((unused))int sig_num)
 ssize_t input_buf(info_t *info, char **buf, size_t *len)
 {
 	ssize_t y;
-	char *new_buf;
 	size_t len_p = 0;
 
 	/* fill the buffer */
-		signal(SIGINT, sigintHandler);
-#if USE_GETLINE
-		y = getline(buf, &len_p, stdin);
-#else
-		y = _getline(info, buf, &len_p);
-#endif
-		if (y > 0)
-		{
-			if ((*buf)[y - 1] == '\n')
-			{
-				(*buf)[y - 1] = '\0'; /* remove trailing newline */
-				y--;
-			}
 
-			info->linecount_flag = 1;
-			remove_comments(*buf);
-			build_history_list(info, *buf, info->histcount++);
-			/* if (_strchr(*buf, ';')) is this a command chain? */
-			{
-				*len = y;
-				info->cmd_buf = buf;
-			}
-		}
-		else
+	signal(SIGINT, sigintHandler);
+#if USE_GETLINE
+	y = getline(buf, &len_p, stdin);
+#else
+	y = _getline(info, buf, &len_p);
+#endif
+	if (y > 0)
+	{
+		if ((*buf)[y - 1] == '\n')
 		{
-			free(*buf);
-			*buf = NULL;
-	return (y);
+			(*buf)[y - 1] = '\0'; /* remove trailing newline */
+			y--;
 		}
+
+		info->linecount_flag = 1;
+		remove_comments(*buf);
+
+		build_history_list(info, *buf, info->histcount++);
+		/* if (_strchr(*buf, ';')) is this a command chain? */
+		{
+			*len = y;
+			info->cmd_buf = buf;
+		}
+	}
+	else
+	{
+		free(*buf);
+		*buf = NULL;
+	}
+	return (y);
 }
+
 
 /**
  * get_input - gets a line minus the newline
