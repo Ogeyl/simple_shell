@@ -19,12 +19,11 @@ int interactive(info_t *info)
 		}
 
 		/* Check if the read and write file descriptors are valid */
-		if (info->readfd >= 0 && info->writefd >= 0)
+		if (info->readfd >= 0)
 		{
-			struct stat st_r, st_w;
+			struct stat st_r;
 
 			if (fstat(info->readfd, &st_r) != -1 && S_ISCHR(st_r.st_mode)
-				&& fstat(info->writefd, &st_w) != -1 && S_ISCHR(st_w.st_mode))
 			{
 				return (1);
 			}

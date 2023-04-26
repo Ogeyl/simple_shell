@@ -41,7 +41,7 @@ char *convert_number(long int num, int base, int flags)
  *
  * Return: void
  */
-void print_error(info_t *info, const char *estr)
+void print_error(info_t *info, char *estr)
 {
 	_eputs(info->fname);
 	_eputs(": ");
