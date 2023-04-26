@@ -167,7 +167,7 @@ int _isalpha(int);
 int _atoi(char *);
 
 /* toem_errors1.c */
-int _erratoi(char *);
+int _erratoi(const char *s);
 void print_error(info_t *, char *estr);
 int print_d(int, int);
 char *convert_number(long int, int, int);
