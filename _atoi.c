@@ -23,7 +23,7 @@ int interactive(info_t *info)
 		{
 			struct stat st_r;
 
-			if (fstat(info->readfd, &st_r) != -1 && S_ISCHR(st_r.st_mode)
+			if (fstat(info->readfd, &st_r) != -1 && S_ISCHR(st_r.st_mode))
 			{
 				return (1);
 			}
