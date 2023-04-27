@@ -9,7 +9,7 @@
  */
 int main(int ac, char **av)
 {
-	info_t info[] =  { { .histsize = 0, .histfile = NULL, .env = NULL, .alias = NULL, .dir = NULL, .argv = NULL, .pid = getpid(), .line = NULL, .cmd = NULL, .readfd = STDIN_FILENO, .exit_status = 0 } };
+	info_t info[] =  { { .histsize = 0, .histfile = (char *) NULL, .env = NULL, .alias = NULL, .dir = NULL, .argv = NULL, .pid = getpid(), .line = NULL, .cmd = NULL, .readfd = STDIN_FILENO, .exit_status = 0 } };
 
 	int fd = 2;
 

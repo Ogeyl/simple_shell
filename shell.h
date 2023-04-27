@@ -95,7 +95,7 @@ typedef struct passinfo
 	char **envp;
 	size_t histsize;
 	size_t len;
-	char *histfie
+	char *histfile
 
 } info_t;
 
