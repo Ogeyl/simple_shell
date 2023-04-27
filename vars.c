@@ -92,30 +92,32 @@ void check_chain(info_t *info, char *buf, size_t *p, size_t i, size_t len)
 *
 * Return: if successful return to (1), 0 otherwise
 */
+
 int replace_alias(info_t *info)
 {
 	list_t *node;
 	char *p;
+	int i;
 
-	for (int i = 0; i < info->argc; i++)
+	for (i = 0; i < info->argc; i++)
 	{
-	node = node_starts_with(info->alias, info->argv[i], '=');
-	if (node)
+		node = node_starts_with(info->alias, info->argv[i], '=');
+		if (node)
 		{
-	free(info->argv[i]);
-	p = _strchr(node->str, '=');
-		if (!p)
+			free(info->argv[i]);
+			p = _strchr(node->str, '=');
+			if (!p)
 			{
-		return (0);
-	}
-		p = _strdup(p + 1);
-		if (!p)
+				return (0);
+			}
+			p = _strdup(p + 1);
+			if (!p)
 			{
-		return (0);
-	}
-		info->argv[i] = p;
-	}
+				return (0);
+			}
+			info->argv[i] = p;
 		}
+	}
 
 	return (1);
 }
@@ -169,7 +171,7 @@ int replace_vars(info_t *info)
 *
 * Return: 1 if replaced, otherwise 0
 */
-int replace_string(char**old, car*new)
+int replace_string(char**old, char*new)
 {
 	if (*old != NULL)
 		free(*old);
