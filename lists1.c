@@ -109,7 +109,7 @@ ssize_t get_node_index(list_t *head, list_t *node)
 {
 	size_t index = 0;
 	list_t *current;
-	for (list_t *current = head; current; current = current->next, index++)
+	for (current = head; current; current = current->next, index++)
 		if (current == node)
 			return (index);
 	return (-1);
