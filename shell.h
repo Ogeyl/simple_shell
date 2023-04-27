@@ -92,7 +92,6 @@ typedef struct passinfo
 	int cmd_buf_type; /* CMD_type ||, &&, ; */
 	int readfd;
 	int histcount;
-	int writefd;
 	char **envp;
 	size_t histsize;
 	size_t len;
