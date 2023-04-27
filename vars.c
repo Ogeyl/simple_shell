@@ -1,42 +1,47 @@
 #include "shell.h"
 
 /**
-* is_chain - test if current char in buffer is a chain delimeter
-* @info: the parameter struct
-* @buf: the char buffer
-* @p: address of current position in buf
-*
-* Return: 1 if chain delimeter, 0 otherwise
-*/
+ * is_chain - test if current char in buffer is a chain delimiter
+ * @info: the parameter struct
+ * @buf: the char buffer
+ * @p: address of current position in buf
+ *
+ * Return: 1 if chain delimiter, 0 otherwise
+ */
 int is_chain(info_t *info, char *buf, size_t *p)
 {
-i	if (buf == NULL || p == NULL || *p >= info->len)
+	/* Declare variable i before use */
+	size_t i;
+	/* Check for null pointers and out-of-bounds access */
+	if (buf == NULL || p == NULL || *p >= info->len)
 	{
-	return (0); /* Check for null pointers and out-of-bounds access */
-	j = *p;
+		return 0;
+	}
+	i = *p;
 
-	if (buf[j] == '|' && j + 1 < info->len && buf[j + 1] == '|')
+	if (buf[i] == '|' && i + 1 < info->len && buf[i + 1] == '|')
 	{
-	buf[j] = 0;
-	++j;
-	info->cmd_buf_type = CMD_OR;
+		buf[i] = 0;
+		++i;
+		info->cmd_buf_type = CMD_OR;
 	}
-	else if (buf[j] == '&' && j + 1 < info->len && buf[j + 1] == '&')
+	else if (buf[i] == '&' && i + 1 < info->len && buf[i + 1] == '&')
 	{
-	buf[j] = 0;
-	++j;
-	info->cmd_buf_type = CMD_AND;
+		buf[i] = 0;
+		++i;
+		info->cmd_buf_type = CMD_AND;
 	}
-	else if (buf[j] == ';')
+	else if (buf[i] == ';')
 	{
-	buf[j] = 0;
-	info->cmd_buf_type = CMD_CHAIN;
+		buf[i] = 0;
+		info->cmd_buf_type = CMD_CHAIN;
 	}
 	else
 	{
-	return (0);
+		return (0);
+	}
 
-	*p = j;
+	*p = i;
 	return (1);
 }
 
@@ -160,11 +165,11 @@ int replace_vars(info_t *info)
 /**
 * replace_string - replaces string
 * @old: address of old string
-* @new: new string
+* @new: new string 
 *
-* Return: 1 if replaced, 0 otherwise
+* Return: 1 if replaced, otherwise 0
 */
-int replace_string(char **old, char *new)
+int replace_string(char**old, car*new)
 {
 	if (*old != NULL)
 		free(*old);
