@@ -93,6 +93,10 @@ typedef struct passinfo
 	int readfd;
 	int histcount;
 	int writefd;
+	char **envp;
+	char **history;
+	size_t histsize;
+	size_t len;
 } info_t;
 
 #define INFO_INIT \

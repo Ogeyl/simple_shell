@@ -23,8 +23,10 @@ int is_cmd(info_t *info, char *path)
 		return (0);
 	}
 	if (st.st_mode & (S_IXUSR | S_IXGRP | S_IXOTH))
+	{
 		return (1);
-
+	}
+	return (0);
 }
 
 /**

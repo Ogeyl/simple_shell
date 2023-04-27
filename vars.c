@@ -10,12 +10,13 @@
 */
 int is_chain(info_t *info, char *buf, size_t *p)
 {
-	if (buf == NULL || p == NULL || *p >= info->len)
+i	if (buf == NULL || p == NULL || *p >= info->len)
 	{
 	return (0); /* Check for null pointers and out-of-bounds access */
-	size_t j = *p;
+	j = *p;
 
-	if buf[j] == '|' && j + 1 < info->len && buf[j + 1] == '|') {
+	if (buf[j] == '|' && j + 1 < info->len && buf[j + 1] == '|')
+	{
 	buf[j] = 0;
 	++j;
 	info->cmd_buf_type = CMD_OR;
