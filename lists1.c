@@ -108,8 +108,9 @@ list_t *node_starts_with(list_t *node, char *prefix, char c)
 ssize_t get_node_index(list_t *head, list_t *node)
 {
 	size_t index = 0;
+	list_t *current;
 	for (list_t *current = head; current; current = current->next, index++)
 		if (current == node)
-			return (ndex);
+			return (index);
 	return (-1);
 }
