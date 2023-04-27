@@ -41,7 +41,7 @@ char *convert_number(long int num, int base, int flags)
  *
  * Return: void
  */
-void print_error(info_t *info, const char *estr)
+void print_error(info_t *info, char *estr)
 {
 	_eputs(info->fname);
 	_eputs(": ");
@@ -131,7 +131,7 @@ void remove_comments(char *buf)
 	int i;
 
 	for (i = 0; buf[i] != '\0'; i++)
-		if (buf[i] == '#' && (!i || buf[i - 1] == '
+		if (buf[i] == '#' && (!i || buf[i - 1] == '\n'))
 					{
 					buf[i] = '\0';
 					break;
