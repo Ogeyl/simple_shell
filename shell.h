@@ -95,16 +95,13 @@ typedef struct passinfo
 	char **envp;
 	size_t histsize;
 	size_t len;
-	char *histfile
+	char *histfile;
 
 } info_t;
 
-info_t info[] =  { { .histsize = 0, .histfile = (char *) NULL, .env = NULL, .alias = NULL, .dir = NULL, .argv = NULL, .pid = getpid(), .line = NULL, .cmd = NULL, .readfd = STDIN_FILENO, .exit_status = 0 } };
-
 #define INFO_INIT \
-{ \
-    NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
-    0, 0, 0, 0 \
+{ \ NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
+		0, 0, 0} \
 }
 
 
