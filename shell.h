@@ -92,12 +92,23 @@ typedef struct passinfo
 	int cmd_buf_type; /* CMD_type ||, &&, ; */
 	int readfd;
 	int histcount;
-	int writefd;
+	char **envp;
+	size_t histsize;
+	size_t len;
+	char *histfile;
+
 } info_t;
 
 #define INFO_INIT \
+<<<<<<< HEAD
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 		0, 0, 0, 0}
+=======
+{ \ NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
+		0, 0, 0} \
+}
+
+>>>>>>> c7be5121e0ccc20f4152ae6c233d8cd55b3b7ca0
 
 /**
  * struct builtin - contains a builtin string and related function

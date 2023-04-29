@@ -23,8 +23,13 @@ int is_cmd(info_t *info, char *path)
 		return (0);
 	}
 	if (st.st_mode & (S_IXUSR | S_IXGRP | S_IXOTH))
+	{
 		return (1);
+<<<<<<< HEAD
 
+=======
+	}
+>>>>>>> c7be5121e0ccc20f4152ae6c233d8cd55b3b7ca0
 	return (0);
 }
 
