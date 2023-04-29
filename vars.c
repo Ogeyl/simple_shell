@@ -10,17 +10,14 @@
 */
 int is_chain(info_t *info, char *buf, size_t *p)
 {
-	if (buf == NULL || p == NULL || *p >= info->len)
-	{
-	return (0); /* Check for null pointers and out-of-bounds access */
 	size_t j = *p;
 
-	if buf[j] == '|' && j + 1 < info->len && buf[j + 1] == '|') {
+	if (buf[j] == '|' && buf[j + 1] == '|') {
 	buf[j] = 0;
 	++j;
 	info->cmd_buf_type = CMD_OR;
 	}
-	else if (buf[j] == '&' && j + 1 < info->len && buf[j + 1] == '&')
+	else if (buf[j] == '&' && buf[j + 1] == '&')
 	{
 	buf[j] = 0;
 	++j;
@@ -32,8 +29,7 @@ int is_chain(info_t *info, char *buf, size_t *p)
 	info->cmd_buf_type = CMD_CHAIN;
 	}
 	else
-	{
-	return (0);
+		return (0);
 
 	*p = j;
 	return (1);
@@ -51,12 +47,12 @@ int is_chain(info_t *info, char *buf, size_t *p)
 */
 void check_chain(info_t *info, char *buf, size_t *p, size_t i, size_t len)
 {
+	size_t j = *p;
+
 	if (buf == NULL || p == NULL)
 	{
 	return; /*Check for null pointers */
 	}
-
-	size_t j = *p;
 
 	if (info->cmd_buf_type == CMD_AND)
 	{
@@ -89,9 +85,10 @@ void check_chain(info_t *info, char *buf, size_t *p, size_t i, size_t len)
 int replace_alias(info_t *info)
 {
 	list_t *node;
+	int i;
 	char *p;
 
-	for (int i = 0; i < info->argc; i++)
+	for (i = 0; i < 10; i++)
 	{
 	node = node_starts_with(info->alias, info->argv[i], '=');
 	if (node)
